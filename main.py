@@ -96,13 +96,6 @@ joke_size = 95
 in_joke = f'((t-7)*{joke_size})'
 out_joke = f'((-1)*{joke_size}*(t-12)+{joke_size})'
 
-
-
-if os.path.exists("./witz_in_between.avi"):
-  os.remove("./witz_in_between.avi")
-else:
-  print("The file does not exist")
-
 text_to_speech(joke_text_orig, "audio_output.wav")
 
 # ----------------- Ffmpeg filters ----------------- 
@@ -114,8 +107,6 @@ filter_complex = " ".join((
     "[bg][bgpicture]overlay=x=(W-w)/2:y=0:enable='between(t,0,5)'[final];",
     "[final]format=yuv420p,",
 
-    #-- Credit --
-    # f"drawtext=text={credit}:x=(w-text_w-10):y=(H-text_h-10):fontsize=10:fontfile={design['title_font']}:fontcolor=white:enable='between(t,0,4)',",
 
     #-- Title --
     #Drop shadow title
@@ -206,8 +197,8 @@ command = [
 # final_video = f"./daten/videos/Autogen1/10assembly/final_video.mp4"
 final_video = f"./final_video.mp4"
 
-if os.path.exists("./final_video.mp4"):
-  os.remove("./final_video.mp4")
+if os.path.exists(final_video):
+  os.remove(final_video)
 else:
   print("The file does not exist")
 
@@ -235,3 +226,7 @@ try:
 except subprocess.CalledProcessError as e:
     print("An error occurred:", e)
 
+if os.path.exists(output_file):
+  os.remove(output_file)
+else:
+  print("The file does not exist")
