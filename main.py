@@ -1,6 +1,6 @@
 import subprocess
 from datetime import date
-from tts_azure_try import text_to_speech
+from tts_azure import text_to_speech
 from select_design import pick_design
 import os
 from database import retrieve_random_joke
